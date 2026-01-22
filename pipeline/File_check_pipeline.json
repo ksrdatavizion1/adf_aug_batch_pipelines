@@ -5,7 +5,14 @@
 			{
 				"name": "Get_file_info",
 				"type": "GetMetadata",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -19,7 +26,10 @@
 						"referenceName": "ds_input",
 						"type": "DatasetReference",
 						"parameters": {
-							"folder": "pipeline1/20260124/"
+							"folder": {
+								"value": "@concat('pipeline1/',variables('date'))",
+								"type": "Expression"
+							}
 						}
 					},
 					"fieldList": [
@@ -116,7 +126,10 @@
 									"referenceName": "ds_input",
 									"type": "DatasetReference",
 									"parameters": {
-										"folder": "pipeline1/20260122/"
+										"folder": {
+											"value": "@concat('pipeline1/',variables('date'))",
+											"type": "Expression"
+										}
 									}
 								}
 							],
@@ -125,7 +138,10 @@
 									"referenceName": "ds_output",
 									"type": "DatasetReference",
 									"parameters": {
-										"folder": "sales_adf/20260122/"
+										"folder": {
+											"value": "@concat('sales_adf/',variables('date'))",
+											"type": "Expression"
+										}
 									}
 								}
 							]
@@ -205,8 +221,30 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "date",
+					"value": {
+						"value": "@formatDateTime(utcNow(), 'yyyyMMdd')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"date": {
+				"type": "String"
+			}
+		},
 		"folder": {
 			"name": "ksr_project"
 		},
