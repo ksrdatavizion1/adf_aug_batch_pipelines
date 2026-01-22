@@ -1,5 +1,13 @@
 {
 	"name": "adfaugg",
+	"properties": {
+		"globalParameters": {
+			"envi": {
+				"type": "string",
+				"value": "dev"
+			}
+		}
+	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
