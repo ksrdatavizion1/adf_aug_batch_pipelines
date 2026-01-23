@@ -24,19 +24,14 @@
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "ds_input",
-						"type": "DatasetReference",
-						"parameters": {
-							"folder": {
-								"value": "@concat('pipeline1/',variables('date'))",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					},
 					"fieldList": [
 						"exists"
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -131,25 +126,13 @@
 							"inputs": [
 								{
 									"referenceName": "ds_input",
-									"type": "DatasetReference",
-									"parameters": {
-										"folder": {
-											"value": "@concat('pipeline1/',variables('date'))",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
 									"referenceName": "ds_output",
-									"type": "DatasetReference",
-									"parameters": {
-										"folder": {
-											"value": "@concat('sales_adf/',variables('date'))",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							]
 						},
@@ -230,19 +213,13 @@
 				"inputs": [
 					{
 						"referenceName": "ds_input",
-						"type": "DatasetReference",
-						"parameters": {
-							"folder": "folder1/"
-						}
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "ds_output",
-						"type": "DatasetReference",
-						"parameters": {
-							"folder": "others/20260122/"
-						}
+						"type": "DatasetReference"
 					}
 				]
 			},
